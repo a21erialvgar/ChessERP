@@ -1,0 +1,143 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <!--
+            <record model="ir.ui.view" id="campaign_manager.list">
+              <field name="name">campaignManager list</field>
+              <field name="model">campaign_manager.campaign_manager</field>
+              <field name="arch" type="xml">
+                <tree>
+                  <field name="name"/>
+                  <field name="value"/>
+                  <field name="value2"/>
+                </tree>
+              </field>
+            </record>
+        -->
+
+        <!-- actions opening views on models -->
+        <!--
+            <record model="ir.actions.act_window" id="campaign_manager.action_window">
+              <field name="name">campaignManager window</field>
+              <field name="res_model">campaign_manager.campaign_manager</field>
+              <field name="view_mode">tree,form</field>
+            </record>
+        -->
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="campaign_manager.action_server">
+              <field name="name">campaignManager server</field>
+              <field name="model_id" ref="model_campaign_manager_campaign_manager"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!--    Vistas de Campana  -->
+        <record model="ir.ui.view" id="campaign_manager.campana_list_view">
+            <field name="name">campaign_manager.campana.view.tree</field>
+            <field name="model">campaign_manager.campana</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="fechaInicio"/>
+                    <field name="numSesionesAprox"/>
+                    <field name="numSesionesRestantes"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        Vistas Personaje-->
+        <record model="ir.ui.view" id="campaign_manager.personaje_list_view">
+            <field name="name">campaign_manager.personaje.view.tree</field>
+            <field name="model">campaign_manager.personaje</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ancestry"/>
+                    <field name="lvl"/>
+                    <field name="clase"/>
+                    <field name="subclass"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        Vistas Jugadores-->
+
+        <record model="ir.ui.view" id="campaign_manager.jugador_list_view">
+            <field name="name">campaign_manager.jugador.view.tree</field>
+            <field name="model">campaign_manager.jugador</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="mail"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        Campañas-->
+        <record model="ir.actions.act_window" id="campaign_manager.campana_action_window">
+            <field name="name">Campañas</field>
+            <field name="res_model">campaign_manager.campana</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--        JUgadores-->
+        <record model="ir.actions.act_window" id="campaign_manager.jugador_action_window">
+            <field name="name">Jugadores</field>
+            <field name="res_model">campaign_manager.jugador</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!--        Personajes-->
+        <record model="ir.actions.act_window" id="campaign_manager.personaje_action_window">
+            <field name="name">Personajes</field>
+            <field name="res_model">campaign_manager.personaje</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="campaignManager" id="campaign_manager.menu_root"/>
+
+        <!-- menu categories -->
+        <menuitem name="Campañas" id="campaign_manager.campana_menu" parent="campaign_manager.menu_root"
+                  action="campaign_manager.campana_action_window"/>
+        <menuitem name="Jugadores" id="campaign_manager.jugador_menu" parent="campaign_manager.menu_root"
+                  action="campaign_manager.jugador_action_window"/>
+        <menuitem name="Personajes" id="campaign_manager.personaje_menu" parent="campaign_manager.menu_root"
+                  action="campaign_manager.personaje_action_window"/>
+
+
+        <!--Jugador Form-->
+        <record model="ir.ui.view" id="campaign_manager.jugador_form_view">
+            <field name="name">campaign_manager.jugador.view.form</field>
+            <field name="model">campaign_manager.jugador</field>
+            <field name="arch" type="xml">
+                <form string="Formulario del Jugador">
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="Nombre">
+                                <h1>
+                                    <field name="name" placeholder="Pepito"/>
+                                </h1>
+                            </label>
+                        </div>
+                        <group>
+                            <separator string="Informacion de Contacto"/>
+                            <field name="mail"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
